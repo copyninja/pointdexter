@@ -3,6 +3,13 @@
 PACKAGE=$2
 SUITE=$1
 
+if [ $# -le 1 ]; then
+   echo Usage: $0 suite package
+   echo suite: can be binary\|source
+   echo package: .deb if suite is binary  tarball if source.
+   exit 2
+fi
+
 if [ "x$POINTDEX_OUTPUT" == "x" ]; then
     export POINTDEX_OUTPUT="../"
     echo "I: No pointdex output, using $POINTDEX_OUTPUT"
@@ -16,6 +23,8 @@ fi
 if [ "x$POINTDEX_CHECKS" == "x" ]; then
     export POINTDEX_CHECKS="/usr/share/pointdexter/checks/${SUITE}"
     echo "I: No pointdex checks, using $POINTDEX_CHECKS"
+else
+    export POINTDEX_CHECKS=$POINTDEX_CHECKS/${SUITE}
 fi
 
 PUF=$POINTDEX_OUTPUT/pointdexter.pointupload
