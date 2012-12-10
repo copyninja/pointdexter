@@ -16,6 +16,7 @@ setup(
     long_description=long_description,
     description='does some stuff with things & stuff',
     setup_requires = ['setuptools-git'],
+    install_requires = ['atlantic'],
     license="Expat",
     url="",
     platforms=['any']
